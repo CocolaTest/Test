@@ -1,9 +1,9 @@
 name: Keep Codespace Alive
 
 on:
-  schedule:
-    - cron: "* * * * *"  # setiap 5 menit
   workflow_dispatch:
+  schedule:
+    - cron: "* * * * *"  # backup trigger tiap 15 menit
 
 jobs:
   ping:
@@ -12,3 +12,7 @@ jobs:
       - name: Ping Codespace KeepAlive
         run: |
           curl -sSf https://glorious-space-pancake-r4vxqxp6p69x25j4v-8080.app.github.dev/ || true
+
+      - name: Trigger ulang workflow
+        run: |
+          gh workflow run "Keep Codespace Alive"
