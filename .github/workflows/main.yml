@@ -1,4 +1,4 @@
-name: "CharmWave Instance Deployment"
+name: "CharmWave Deployment"
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
 
     env:
       INSTANCE_ID: ${{ github.event.inputs.INSTANCE }}
-      NGROK_EVKILE: ${{ secrets.NGROK_EVKILE }}
+      ZROK_INVITE: ${{ secrets.ZROK_INVITE }}
       REPO: ${{ github.repository }}
       WORKFLOW_FILE: "main.yml"
       DEPLOYMENT_ID: ${{ github.run_id }}
@@ -36,8 +36,8 @@ jobs:
       - name: Validate Secrets
         shell: pwsh
         run: |
-          if (-not $env:NGROK_EVKILE) {
-            Write-Error "Missing Ngrok Auth Token: NGROK_EVKILE"
+          if (-not $env:ZROK_INVITE) {
+            Write-Error "Missing Ngrok Auth Token: ZROK_INVITE"
             exit 1
           }
           Write-Host "All required secrets validated successfully"
